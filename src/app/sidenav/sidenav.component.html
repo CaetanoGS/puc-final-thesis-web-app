@@ -1,7 +1,7 @@
 <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
   <div class="logo-container">
     <button class="logo" (click)="toggleCollapse()">
-        <fa-icon class="sidenav-logout-icon" [icon]="menuIcon"></fa-icon>
+      <fa-icon class="sidenav-logout-icon" [icon]="menuIcon"></fa-icon>
     </button>
     <div class="logo-text" *ngIf="collapsed">Menu</div>
     <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
@@ -25,13 +25,13 @@
     </li>
     <li class="sidenav-nav-logout">
       <a
-        href="#"
+        (click)="logout()"
         class="sidenav-logout-link"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-      <fa-icon class="sidenav-logout-icon" [icon]="logoutIcon"></fa-icon>
-      <span class="sidenav-logout-text" *ngIf="collapsed">Logout</span>
+        <fa-icon class="sidenav-logout-icon" [icon]="logoutIcon"></fa-icon>
+        <span class="sidenav-logout-text" *ngIf="collapsed">Logout</span>
       </a>
     </li>
   </ul>

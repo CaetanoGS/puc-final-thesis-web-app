@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { navbarData } from './nav-data';
 import { faClose, faSignOut, faBars } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 export interface SideNavToggle {
   screenWidth: number;
@@ -35,5 +36,10 @@ export class SidenavComponent implements OnInit{
   toggleCollapse(): void {
     this.collapsed = !this.collapsed;
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
+  }
+
+  logout(): void {
+    localStorage.clear();
+    window.location.reload();
   }
 }
