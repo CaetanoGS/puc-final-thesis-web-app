@@ -24,6 +24,8 @@ export class SidenavComponent implements OnInit{
   logoutIcon = faSignOut;
   menuIcon = faBars;
 
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
       this.screenWidth = window.innerWidth;
   }
@@ -40,6 +42,6 @@ export class SidenavComponent implements OnInit{
 
   logout(): void {
     localStorage.clear();
-    window.location.reload();
+    window.location.href = '/login';
   }
 }
