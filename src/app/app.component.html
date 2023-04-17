@@ -1,5 +1,6 @@
-<app-sidenav (onToggleSideNav)="onToggleSideNav($event)" ></app-sidenav>
-<app-body>
+<app-login (onToggleLoggedIn)="onToggleLoggedIn($event)" *ngIf="isLoggedin === false"></app-login>
+<app-sidenav (onToggleSideNav)="onToggleSideNav($event)" *ngIf="isLoggedin === true"></app-sidenav>
+<app-body *ngIf="isLoggedin === true">
     [collapsed] = "isSideNavCollapsed"
     [screenWidth] = "screenWidth"
 </app-body>
