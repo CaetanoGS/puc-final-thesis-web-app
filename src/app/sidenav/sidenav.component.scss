@@ -13,9 +13,11 @@
     align-items: center;
     padding: 0.93rem 0.938rem 0 0.938rem;
     width: 100%;
+    padding-bottom: 30%;
 
     .logo {
-      background: #fff;
+      background: none;
+      color: #fff;
       text-align: center;
       width: 3rem;
       min-width: 3rem;
@@ -70,6 +72,40 @@
   height: calc(100% - 3.65rem);
   cursor: pointer;
 
+  .sidenav-nav-logout {
+    width: 100%;
+    margin-bottom: 0.625rem;
+
+    .sidenav-logout-link {
+      display: flex;
+      position: absolute;
+      bottom: 1.5rem;
+      align-items: center;
+      height: 3rem;
+      color: #f3f3f3;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-radius: 0.625rem;
+
+      .sidenav-logout-icon {
+        font-size: 22px;
+        width: 2rem;
+        min-width: 2rem;
+        margin: 0 0.5rem;
+        text-align: center;
+      }
+      .sidenav-logout-text {
+        margin-left: 1.5rem;
+      }
+    }
+  }
+  .sidenav-nav-logout:hover {
+    .sidenav-logout-link {
+        background-color: #fff;
+        color: #000;
+    }
+  }
+
   .sidenav-nav-item {
     width: 100%;
     margin-bottom: 0.625rem;
@@ -100,5 +136,14 @@
         background-color: #fff;
         color: #000;
     }
+  }
+}
+
+.active {
+  background-color: #fff;
+
+  .sidenav-link-icon,
+  .sidenav-link-text {
+    color: #6f6f6f;
   }
 }

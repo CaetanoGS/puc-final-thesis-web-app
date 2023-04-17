@@ -1,17 +1,38 @@
-<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
-    <div class="logo-container">
-        <button class="logo" (click)="toggleCollapse()">A</button>
-        <div class="logo-text" *ngIf="collapsed">Menu</div>
-        <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
-            <fa-icon class="sidenav-link-icon" [icon]="closeIcon"></fa-icon>
-        </button>
-    </div>
-    <ul class="sidenav-nav" *ngFor="let data of navData">
-        <li class="sidenav-nav-item">
-            <a href="" class="sidenav-nav-link" [routerLink]="data.routerLink">
-                <fa-icon class="sidenav-link-icon" [icon]="data.icon"></fa-icon>
-                <span class="sidenav-link-text" *ngIf="collapsed">{{ data.label }}</span>
-            </a>
-        </li>
-    </ul>
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
+  <div class="logo-container">
+    <button class="logo" (click)="toggleCollapse()">
+        <fa-icon class="sidenav-logout-icon" [icon]="menuIcon"></fa-icon>
+    </button>
+    <div class="logo-text" *ngIf="collapsed">Menu</div>
+    <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
+      <fa-icon class="sidenav-link-icon" [icon]="closeIcon"></fa-icon>
+    </button>
+  </div>
+  <ul class="sidenav-nav">
+    <li class="sidenav-nav-item" *ngFor="let data of navData">
+      <a
+        href=""
+        class="sidenav-nav-link"
+        [routerLink]="data.routerLink"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <fa-icon class="sidenav-link-icon" [icon]="data.icon"></fa-icon>
+        <span class="sidenav-link-text" *ngIf="collapsed">{{
+          data.label
+        }}</span>
+      </a>
+    </li>
+    <li class="sidenav-nav-logout">
+      <a
+        href="#"
+        class="sidenav-logout-link"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+      <fa-icon class="sidenav-logout-icon" [icon]="logoutIcon"></fa-icon>
+      <span class="sidenav-logout-text" *ngIf="collapsed">Logout</span>
+      </a>
+    </li>
+  </ul>
 </div>

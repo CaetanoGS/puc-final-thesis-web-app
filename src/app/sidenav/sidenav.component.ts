@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { navbarData } from './nav-data';
-import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faSignOut, faBars } from '@fortawesome/free-solid-svg-icons';
 
 export interface SideNavToggle {
   screenWidth: number;
@@ -13,13 +13,19 @@ export interface SideNavToggle {
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent {
+export class SidenavComponent implements OnInit{
 
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
   collapsed: boolean = false;
   screenWidth: number = 0;
   navData = navbarData;
   closeIcon = faClose;
+  logoutIcon = faSignOut;
+  menuIcon = faBars;
+
+  ngOnInit(): void {
+      this.screenWidth = window.innerWidth;
+  }
 
   closeSidenav(): void {
     this.collapsed = false;

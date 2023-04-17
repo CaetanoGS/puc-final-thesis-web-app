@@ -1,7 +1,7 @@
 import { faHome, faChartBar } from '@fortawesome/free-solid-svg-icons';
 
 
-export const navbarData: Array<any> = [
+export const navbarData = [
     {
         routerLink: 'dashboard',
         icon: faHome,
