@@ -18,7 +18,10 @@ export class LoginComponent implements OnInit {
 
   isLoggedIn: boolean = false;
   loginUsername: string = "";
-  loginPassword: string = ""
+  loginPassword: string = "";
+  signupName: string = "";
+  signupEmail: string = "";
+  signupPassword: string = "";
 
   constructor(private router: Router, private loginService: LoginService) { }
 
@@ -40,6 +43,21 @@ export class LoginComponent implements OnInit {
           window.location.href = "/dashboard"
         }
       },
+      (error) => {
+        alert(error);
+      }
+    )
+  }
+
+  signup(){
+    this.loginService.signup(this.signupName, this.signupEmail, this.signupPassword).subscribe(
+      (data) => {
+        if(data)
+          window.location.reload();
+      },
+      (error) => {
+        alert(error)
+      }
     )
   }
 }
