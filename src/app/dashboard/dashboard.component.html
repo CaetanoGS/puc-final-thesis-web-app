@@ -1,1 +1,64 @@
-<h1>Dashboard</h1>
+<mat-grid-list class="dashboard-grid" cols="3" rowHeight="2:1">
+  <mat-grid-tile class="dashboard-grid-market-block">
+    <mat-card class="market-card">
+      <mat-card-content>
+        <apx-chart
+          #chartspark1
+          [series]="series4"
+          [chart]="chart4"
+          [stroke]="stroke4"
+          [yaxis]="yaxis4"
+          [fill]="fill4"
+          [colors]="colors4"
+          [title]="title4"
+          [subtitle]="subtitle4"
+        ></apx-chart>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile class="dashboard-grid-vacation-block">
+    <mat-card class="vacation-card">
+      <mat-card-content>
+        <apx-chart
+          #chartspark1
+          [series]="series5"
+          [chart]="chart5"
+          [stroke]="stroke5"
+          [yaxis]="yaxis5"
+          [fill]="fill5"
+          [colors]="colors5"
+          [title]="title5"
+          [subtitle]="subtitle5"
+        ></apx-chart>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile class="dashboard-grid-stocks-block">
+    <mat-card class="stocks-card">
+      <mat-card-content>
+        <apx-chart
+          #chartspark1
+          [series]="series6"
+          [chart]="chart6"
+          [stroke]="stroke6"
+          [yaxis]="yaxis6"
+          [fill]="fill6"
+          [colors]="colors6"
+          [title]="title6"
+          [subtitle]="subtitle6"
+        ></apx-chart>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="3" rowspan="3">
+    <apx-chart
+      [series]="series"
+      [chart]="chart"
+      [title]="title"
+      style="width: 100%"
+    ></apx-chart>
+  </mat-grid-tile>
+</mat-grid-list>
