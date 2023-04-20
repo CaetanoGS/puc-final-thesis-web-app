@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import {
   ApexNonAxisChartSeries,
   ApexResponsive,
@@ -18,5 +19,7 @@ export class TransactionsComponent {
   title: ApexTitleSubtitle = { text: "Costs" };
   labels: any = ["Team A", "Team B", "Team C", "Team D", "Team E"];
   responsive: ApexResponsive = { breakpoint: 480 }
+
+  plusIcon = faPlus;
   
 }

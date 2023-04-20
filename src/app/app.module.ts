@@ -20,7 +20,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 
@@ -49,7 +49,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatSelectModule,
     MatInputModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

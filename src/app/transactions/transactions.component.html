@@ -1,135 +1,42 @@
-<h2>Responsive Table</h2>
-<div class="table-wrapper"  style="height: 500px; max-height: 500px;">
-    <table class="fl-table">
-        <thead>
-        <tr>
-            <th>Header 1</th>
-            <th>Header 2</th>
-            <th>Header 3</th>
-            <th>Header 4</th>
-            <th>Header 5</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-        </tr>
-        <tr>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-        </tr>
-        <tr>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-        </tr>
-        <tr>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-        </tr>
-        <tr>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-        </tr>
-        <tr>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-        </tr>
-        <tr>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-        </tr>
-        <tr>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-        </tr>
-        <tr>
-            <td>Content 2</td>
-            <td>Content 2</td>
-            <td>Content 2</td>
-            <td>Content 2</td>
-            <td>Content 2</td>
-        </tr>
-        <tr>
-            <td>Content 3</td>
-            <td>Content 3</td>
-            <td>Content 3</td>
-            <td>Content 3</td>
-            <td>Content 3</td>
-        </tr>
-        <tr>
-            <td>Content 4</td>
-            <td>Content 4</td>
-            <td>Content 4</td>
-            <td>Content 4</td>
-            <td>Content 4</td>
-        </tr>
-        <tr>
-            <td>Content 5</td>
-            <td>Content 5</td>
-            <td>Content 5</td>
-            <td>Content 5</td>
-            <td>Content 5</td>
-        </tr>
-        <tr>
-            <td>Content 6</td>
-            <td>Content 6</td>
-            <td>Content 6</td>
-            <td>Content 6</td>
-            <td>Content 6</td>
-        </tr>
-        <tr>
-            <td>Content 7</td>
-            <td>Content 7</td>
-            <td>Content 7</td>
-            <td>Content 7</td>
-            <td>Content 7</td>
-        </tr>
-        <tr>
-            <td>Content 8</td>
-            <td>Content 8</td>
-            <td>Content 8</td>
-            <td>Content 8</td>
-            <td>Content 8</td>
-        </tr>
-        <tr>
-            <td>Content 9</td>
-            <td>Content 9</td>
-            <td>Content 9</td>
-            <td>Content 9</td>
-            <td>Content 9</td>
-        </tr>
-        <tr>
-            <td>Content 10</td>
-            <td>Content 10</td>
-            <td>Content 10</td>
-            <td>Content 10</td>
-            <td>Content 10</td>
-        </tr>
-        <tbody>
-    </table>
+<button
+  mat-mini-fab
+  color="accent"
+  aria-label="Example icon button with a plus one icon"
+  matTooltip="Add new transaction"
+  style="background-color: #324960"
+>
+  <fa-icon
+    class="sidenav-link-icon"
+    [icon]="plusIcon"
+    style="color: white"
+  ></fa-icon>
+</button>
+<h2>Last Transactions</h2>
+<div class="table-wrapper" style="max-height: 500px">
+  <table class="fl-table">
+    <thead>
+      <tr>
+        <th>Sector</th>
+        <th>Date Order</th>
+        <th>Value</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Market</td>
+        <td>12.01.2023</td>
+        <td>$500</td>
+        <td>
+          <button
+            mat-raised-button
+            color="warn"
+            matTooltip="Delete the transaction"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
