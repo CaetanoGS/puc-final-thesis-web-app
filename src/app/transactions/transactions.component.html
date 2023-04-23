@@ -23,15 +23,16 @@
     </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Market</td>
-        <td>12.01.2023</td>
-        <td>$500</td>
+      <tr *ngFor="let transaction of transactions">
+        <td>{{transaction.sector}}</td>
+        <td>{{transaction.createdAt}}</td>
+        <td>${{transaction.value}}</td>
         <td>
           <button
             mat-raised-button
             color="warn"
             matTooltip="Delete the transaction"
+            (click)="deleteTransaction(transaction.id)"
           >
             Delete
           </button>

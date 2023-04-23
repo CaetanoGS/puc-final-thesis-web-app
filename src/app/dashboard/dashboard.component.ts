@@ -168,16 +168,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService) {}
 
-  deleteTransaction(transactionId: number) {
-    const backendToken = localStorage.getItem("token")
-    this.dashboardService.deleteTransaction(transactionId, backendToken).subscribe(
-      () => {
-        const transactionIndex = this.transactions.findIndex((t) => t.id === transactionId)
-        this.transactions.splice(transactionIndex, 1);
-      }
-    );
-  }
-
   ngOnInit(): void {
     let debitTransactionDates: string[] = [];
     const backendToken = localStorage.getItem("token")
