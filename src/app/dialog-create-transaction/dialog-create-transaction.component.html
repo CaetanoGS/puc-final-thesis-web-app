@@ -1,0 +1,46 @@
+<div mat-dialog-content>
+  <h1>Create New Transaction</h1>
+  <mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <mat-select [(ngModel)]="data.category">
+      <mat-option value="debit">Debit</mat-option>
+      <mat-option value="credit">Credit</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Sector</mat-label>
+    <mat-select [(ngModel)]="data.sector">
+      <mat-option value="house">House</mat-option>
+      <mat-option value="stocks">Stocks</mat-option>
+      <mat-option value="hobbies">Hobbies</mat-option>
+      <mat-option value="market">Market</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Value</mat-label>
+    <input matInput [(ngModel)]="data.value" />
+    <span matTextPrefix>$&nbsp;</span>
+  </mat-form-field>
+</div>
+<div class="buttons" mat-dialog-actions>
+  <button
+    (click)="onNoClick()"
+    mat-raised-button
+    color="warn"
+    matTooltip="Cancel the creation"
+  >
+    Cancel
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    matTooltip="Create the transaction"
+    [mat-dialog-close]="data"
+    cdkFocusInitial
+    style="background-color: #324960; "
+  >
+    Create
+  </button>
+</div>

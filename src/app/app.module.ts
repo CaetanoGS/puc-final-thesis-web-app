@@ -21,7 +21,8 @@ import { MatInputModule } from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogCreateTransactionComponent } from './dialog-create-transaction/dialog-create-transaction.component';
 
 
 
@@ -33,6 +34,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     DashboardComponent,
     TransactionsComponent,
     LoginComponent,
+    DialogCreateTransactionComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatInputModule,
     MatTableModule,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
