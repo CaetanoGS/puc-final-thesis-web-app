@@ -3,15 +3,14 @@
     <mat-card class="market-card">
       <mat-card-content>
         <apx-chart
-          #chartspark1
-          [series]="series4"
-          [chart]="chart4"
-          [stroke]="stroke4"
-          [yaxis]="yaxis4"
-          [fill]="fill4"
-          [colors]="colors4"
-          [title]="title4"
-          [subtitle]="subtitle4"
+          [series]="baseCostsChartOptions.series"
+          [chart]="baseCostsChartOptions.chart"
+          [stroke]="baseCostsChartOptions.stroke"
+          [yaxis]="baseCostsChartOptions.yaxis"
+          [fill]="baseCostsChartOptions.fill"
+          [colors]="baseCostsChartOptions.colors"
+          [title]="baseCostsChartOptions.title"
+          [subtitle]="baseCostsChartOptions.subtitle"
         ></apx-chart>
       </mat-card-content>
     </mat-card>
@@ -21,15 +20,14 @@
     <mat-card class="vacation-card">
       <mat-card-content>
         <apx-chart
-          #chartspark1
-          [series]="series5"
-          [chart]="chart5"
-          [stroke]="stroke5"
-          [yaxis]="yaxis5"
-          [fill]="fill5"
-          [colors]="colors5"
-          [title]="title5"
-          [subtitle]="subtitle5"
+          [series]="hobbiesCostsChartOptions.series"
+          [chart]="hobbiesCostsChartOptions.chart"
+          [stroke]="hobbiesCostsChartOptions.stroke"
+          [yaxis]="hobbiesCostsChartOptions.yaxis"
+          [fill]="hobbiesCostsChartOptions.fill"
+          [colors]="hobbiesCostsChartOptions.colors"
+          [title]="hobbiesCostsChartOptions.title"
+          [subtitle]="hobbiesCostsChartOptions.subtitle"
         ></apx-chart>
       </mat-card-content>
     </mat-card>
@@ -40,14 +38,14 @@
       <mat-card-content>
         <apx-chart
           #chartspark1
-          [series]="series6"
-          [chart]="chart6"
-          [stroke]="stroke6"
-          [yaxis]="yaxis6"
-          [fill]="fill6"
-          [colors]="colors6"
-          [title]="title6"
-          [subtitle]="subtitle6"
+          [series]="investmentsChartOptions.series"
+          [chart]="investmentsChartOptions.chart"
+          [stroke]="investmentsChartOptions.stroke"
+          [yaxis]="investmentsChartOptions.yaxis"
+          [fill]="investmentsChartOptions.fill"
+          [colors]="investmentsChartOptions.colors"
+          [title]="investmentsChartOptions.title"
+          [subtitle]="investmentsChartOptions.subtitle"
         ></apx-chart>
       </mat-card-content>
     </mat-card>
@@ -55,9 +53,10 @@
 
   <mat-grid-tile colspan="3" rowspan="3">
     <apx-chart
-      [series]="series"
-      [chart]="chart"
-      [title]="title"
+      [series]="areaChartOptions.series"
+      [chart]="areaChartOptions.chart"
+      [title]="areaChartOptions.title"
+      [labels]="areaChartOptions.labels"
       style="width: 100%"
     ></apx-chart>
   </mat-grid-tile>
