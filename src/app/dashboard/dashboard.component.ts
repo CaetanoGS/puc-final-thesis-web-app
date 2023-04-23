@@ -35,6 +35,8 @@ export class DashboardComponent implements OnInit {
   investmentTransactions: number[] = []
   hobbiesTransactions: number[] = []
   baseCostsTransactions: number[] = []
+  debitTransactionDates: string[] = [];
+
 
   baseCostsTotal: number = 0;
   hobbiesCostsTotal: number = 0;
@@ -44,7 +46,7 @@ export class DashboardComponent implements OnInit {
     series: [
       {
         name: 'Debits',
-        data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
+        data: [],
       },
     ],
     chart: { type: "area", height: "280px" },
@@ -52,6 +54,7 @@ export class DashboardComponent implements OnInit {
     xaxis: {
       type: "datetime"
     },
+    colors: ["#f38b8a"]
   }
 
   baseCostsChartOptions: Partial<cardChartOptions> | any = {
@@ -76,7 +79,7 @@ export class DashboardComponent implements OnInit {
     },
     colors: ["#c04c47"],
     title: {
-      text: `$${this.baseCostsTotal}`,
+      text: `$0`,
       offsetX: 0,
       style: {
         fontSize: "24px"
@@ -150,7 +153,7 @@ export class DashboardComponent implements OnInit {
     },
     colors: ["#9cb7d4"],
     title: {
-      text: `$${this.investmentsTotal}`,
+      text: `$0`,
       offsetX: 0,
       style: {
         fontSize: "24px"
@@ -165,85 +168,125 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-
   constructor(private dashboardService: DashboardService) {}
 
+  //Those functions can become only one
+
+  private pushDebitTransactions(transaction: any) {
+    let createdDate = new Date(transaction.createdAt)
+    this.debitTransactionDates.push(createdDate.toDateString())
+    if (this.debitTransactions.length > 0) {
+      const lastValue: number = this.debitTransactions[this.debitTransactions.length - 1];
+      let summedValue: number = lastValue + transaction.value;
+      this.debitTransactions.push(+summedValue.toFixed(2))
+    } else {
+      this.debitTransactions.push(transaction.value)
+    }
+  }
+
+  private pushBaseCostsTransactions(transaction: any){
+    if (this.baseCostsTransactions.length > 0) {
+      const lastValue: number = this.baseCostsTransactions[this.baseCostsTransactions.length - 1];
+      let summedValue: number = lastValue + transaction.value;
+      this.baseCostsTransactions.push(+summedValue.toFixed(2))
+    } else {
+      this.baseCostsTransactions.push(transaction.value)
+    }
+    this.baseCostsTotal += transaction.value
+  }
+
+  private pushHobbiesCosts(transaction: any){
+    if (this.hobbiesTransactions.length > 0) {
+      const lastValue: number = this.hobbiesTransactions[this.hobbiesTransactions.length - 1];
+      let summedValue: number = lastValue + transaction.value;
+      this.hobbiesTransactions.push(+summedValue.toFixed(2))
+    } else {
+      this.hobbiesTransactions.push(transaction.value)
+    }
+    this.hobbiesCostsTotal += transaction.value;
+  }
+
+  private pushInvestments(transaction: any){
+    if (this.investmentTransactions.length > 0) {
+      const lastValue: number = this.investmentTransactions[this.investmentTransactions.length - 1];
+      let summedValue: number = lastValue + transaction.value;
+      this.investmentTransactions.push(+summedValue.toFixed(2))
+    } else {
+      this.investmentTransactions.push(transaction.value)
+    }
+    this.investmentsTotal += transaction.value;
+  }
+
+  private updateBaseCostsTitle(){
+    this.baseCostsChartOptions.title.text = `$${this.baseCostsTotal.toFixed(2)}`;
+    this.baseCostsChartOptions.title = { ...this.baseCostsChartOptions.title };
+  }
+
+  private updateHobbiesTitle(){
+    this.hobbiesCostsChartOptions.title.text = `$${this.hobbiesCostsTotal.toFixed(2)}`;
+    this.hobbiesCostsChartOptions.title = { ...this.hobbiesCostsChartOptions.title };
+  }
+
+  private updateInvestmentTitle(){
+    this.investmentsChartOptions.title.text = `$${this.investmentsTotal.toFixed(2)}`;
+    this.investmentsChartOptions.title = { ...this.investmentsChartOptions.title };
+  }
+
+  private updateTitles() {
+    this.updateBaseCostsTitle();
+    this.updateHobbiesTitle();
+    this.updateInvestmentTitle(); 
+  }
+
+  private updateInvestmentsTransactions(){
+    this.investmentsChartOptions.series[0].data = this.investmentTransactions;
+    this.investmentsChartOptions.series = [...this.investmentsChartOptions.series];
+  }
+
+  private updateHobbiesTransactions(){
+    this.hobbiesCostsChartOptions.series[0].data = this.hobbiesTransactions;
+    this.hobbiesCostsChartOptions.series = [...this.hobbiesCostsChartOptions.series];
+  }
+
+  private updateBaseCostsTransactions(){
+    this.baseCostsChartOptions.series[0].data = this.baseCostsTransactions;
+    this.baseCostsChartOptions.series = [...this.baseCostsChartOptions.series];
+  }
+
+  private updateDebitChartOptions(){
+    this.areaChartOptions.labels =this. debitTransactionDates;
+    this.areaChartOptions.labels = [...this.areaChartOptions.labels];
+
+    this.areaChartOptions.series[0].data = this.debitTransactions;
+    this.areaChartOptions.series = [...this.areaChartOptions.series];
+  }
+
+  private refreshTransactionsArrays(){
+    this.updateBaseCostsTransactions();
+    this.updateDebitChartOptions();
+    this.updateHobbiesTransactions();
+    this.updateInvestmentsTransactions();
+  }
+
+
+
   ngOnInit(): void {
-    let debitTransactionDates: string[] = [];
-    const backendToken = localStorage.getItem("token")
+    const backendToken = localStorage.getItem("token");
     this.dashboardService.getTransactions(backendToken).subscribe(
       (transactionsResponse) => {
         this.transactions = transactionsResponse.transactions as any[];
         for (let transaction of this.transactions) {
-          if (transaction.category === "debit") {
-            let createdDate = new Date(transaction.createdAt)
-            debitTransactionDates.push(createdDate.toDateString())
-            if (this.debitTransactions.length > 0) {
-              const lastValue: number = this.debitTransactions[this.debitTransactions.length - 1];
-              let summedValue: number = lastValue + transaction.value;
-              this.debitTransactions.push(+summedValue.toFixed(2))
-            } else {
-              this.debitTransactions.push(transaction.value)
-            }
-          }
+          if (transaction.category === "debit") {this.pushDebitTransactions(transaction)}
 
-          if (transaction.sector === "market" || transaction.sector === "house") {
-            if (this.baseCostsTransactions.length > 0) {
-              const lastValue: number = this.baseCostsTransactions[this.baseCostsTransactions.length - 1];
-              let summedValue: number = lastValue + transaction.value;
-              this.baseCostsTransactions.push(+summedValue.toFixed(2))
-            } else {
-              this.baseCostsTransactions.push(transaction.value)
-            }
-            this.baseCostsTotal += transaction.value
-          }
+          if (transaction.sector === "market" || transaction.sector === "house") {this.pushBaseCostsTransactions(transaction)}
 
-          if (transaction.sector === "hobbies") {
-            if (this.hobbiesTransactions.length > 0) {
-              const lastValue: number = this.hobbiesTransactions[this.hobbiesTransactions.length - 1];
-              let summedValue: number = lastValue + transaction.value;
-              this.hobbiesTransactions.push(+summedValue.toFixed(2))
-            } else {
-              this.hobbiesTransactions.push(transaction.value)
-            }
-            this.hobbiesCostsTotal += transaction.value;
-          }
+          if (transaction.sector === "hobbies") {this.pushHobbiesCosts(transaction)}
 
-          if (transaction.sector === "stocks") {
-            if (this.investmentTransactions.length > 0) {
-              const lastValue: number = this.investmentTransactions[this.investmentTransactions.length - 1];
-              let summedValue: number = lastValue + transaction.value;
-              this.investmentTransactions.push(+summedValue.toFixed(2))
-            } else {
-              this.investmentTransactions.push(transaction.value)
-            }
-            this.investmentsTotal += transaction.value;
-          }
+          if (transaction.sector === "stocks") {this.pushInvestments(transaction)}
         }
 
-        this.baseCostsChartOptions.title.text = `$${this.baseCostsTotal.toFixed(2)}`;
-        this.baseCostsChartOptions.title = {...this.baseCostsChartOptions.title};
-
-        this.hobbiesCostsChartOptions.title.text = `$${this.hobbiesCostsTotal.toFixed(2)}`;
-        this.hobbiesCostsChartOptions.title = {...this.hobbiesCostsChartOptions.title};
-
-        this.investmentsChartOptions.title.text = `$${this.investmentsTotal.toFixed(2)}`;
-        this.investmentsChartOptions.title = {...this.investmentsChartOptions.title};
-
-        this.baseCostsChartOptions.series[0].data = this.baseCostsTransactions;
-        this.baseCostsChartOptions.series = [...this.baseCostsChartOptions.series];
-
-        this.hobbiesCostsChartOptions.series[0].data = this.hobbiesTransactions;
-        this.hobbiesCostsChartOptions.series = [...this.hobbiesCostsChartOptions.series];
-
-        this.investmentsChartOptions.series[0].data = this.investmentTransactions;
-        this.investmentsChartOptions.series = [...this.investmentsChartOptions.series];
-
-        this.areaChartOptions.labels = debitTransactionDates;
-        this.areaChartOptions.labels = [...this.areaChartOptions.labels];
-
-        this.areaChartOptions.series[0].data = this.debitTransactions;
-        this.areaChartOptions.series = [...this.areaChartOptions.series];
+        this.updateTitles();
+        this.refreshTransactionsArrays();
       },
     );
   }
