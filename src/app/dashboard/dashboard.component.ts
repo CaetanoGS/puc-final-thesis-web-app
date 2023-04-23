@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexFill, ApexNonAxisChartSeries, ApexResponsive, ApexTitleSubtitle, ApexXAxis, ApexYAxis } from 'ng-apexcharts';
+import { DashboardService } from './dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -140,6 +141,27 @@ export class DashboardComponent implements OnInit {
       fontSize: "14px"
     }
   };
+
+  transactions: any[] = []
+
+  constructor(private dashboardService: DashboardService) {
+    const backendToken = localStorage.getItem("token")
+    this.dashboardService.getTransactions(backendToken).subscribe(
+      (transactionsResponse) => {
+        this.transactions = transactionsResponse.transactions as any[];
+      },
+    )
+  }
+
+  deleteTransaction(transactionId: number){
+    const backendToken = localStorage.getItem("token")
+    this.dashboardService.deleteTransaction(transactionId, backendToken).subscribe(
+      () => {
+        const transactionIndex = this.transactions.findIndex((t) => t.id === transactionId)
+        this.transactions.splice(transactionIndex, 1);
+      }
+    );
+  }
 
   ngOnInit(): void {
 

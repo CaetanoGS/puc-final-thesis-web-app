@@ -22,7 +22,7 @@ export class LoginService {
 
   login(username: string, password: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(
-      "http://localhost:3000/api/authenticate",
+      "/api/authenticate",
       {
         username: username,
         password: password
@@ -32,7 +32,7 @@ export class LoginService {
 
   signup(name: string, username: string, password: string): Observable<SignUpResponse> {
     return this.http.post<SignUpResponse>(
-      "http://localhost:3000/api/users/signup",
+      "/api/users/signup",
       {
         username: username,
         password: password,
