@@ -29,10 +29,10 @@ export type cardChartOptions = {
 })
 export class DashboardComponent implements OnInit {
 
-  transactions: any[] = []
-  debitTransactions: number[] = []
-  creditTransactions: number[] = []
-  investmentTransactions: number[] = []
+  transactions: any[] = [];
+  debitTransactions: number[] = [];
+  creditTransactions: number[] = [];
+  investmentTransactions: number[] = [];
   hobbiesTransactions: number[] = []
   baseCostsTransactions: number[] = []
   debitTransactionDates: string[] = [];
@@ -230,6 +230,7 @@ export class DashboardComponent implements OnInit {
   private updateInvestmentTitle(){
     this.investmentsChartOptions.title.text = `$${this.investmentsTotal.toFixed(2)}`;
     this.investmentsChartOptions.title = { ...this.investmentsChartOptions.title };
+    console.log(this.investmentsChartOptions)
   }
 
   private updateTitles() {
@@ -241,6 +242,7 @@ export class DashboardComponent implements OnInit {
   private updateInvestmentsTransactions(){
     this.investmentsChartOptions.series[0].data = this.investmentTransactions;
     this.investmentsChartOptions.series = [...this.investmentsChartOptions.series];
+    console.log(this.investmentsChartOptions)
   }
 
   private updateHobbiesTransactions(){

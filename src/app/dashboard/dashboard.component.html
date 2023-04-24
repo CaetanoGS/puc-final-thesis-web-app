@@ -1,4 +1,4 @@
-<mat-grid-list class="dashboard-grid" cols="3" rowHeight="2:1">
+<mat-grid-list class="dashboard-grid" cols="3" rowHeight="2:1" *ngIf="transactions.length > 0">
   <mat-grid-tile class="dashboard-grid-market-block">
     <mat-card class="market-card">
       <mat-card-content>
