@@ -33,8 +33,8 @@ export class DashboardComponent implements OnInit {
   debitTransactions: number[] = [];
   creditTransactions: number[] = [];
   investmentTransactions: number[] = [];
-  hobbiesTransactions: number[] = []
-  baseCostsTransactions: number[] = []
+  hobbiesTransactions: number[] = [];
+  baseCostsTransactions: number[] = [];
   debitTransactionDates: string[] = [];
 
 
