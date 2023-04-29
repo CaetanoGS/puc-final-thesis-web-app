@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
   signupName: string = "";
   signupEmail: string = "";
   signupPassword: string = "";
+  errorMessage: string = "";
+  signUpErrorMessage: string = "";
 
   constructor(private router: Router, private loginService: LoginService) { }
 
@@ -44,7 +46,7 @@ export class LoginComponent implements OnInit {
         }
       },
       (error) => {
-        alert(error);
+        this.errorMessage = error.error;
       }
     )
   }
@@ -56,7 +58,8 @@ export class LoginComponent implements OnInit {
           window.location.reload();
       },
       (error) => {
-        alert(error)
+        this.signUpErrorMessage = "";
+        this.signUpErrorMessage = error.error.detail;
       }
     )
   }

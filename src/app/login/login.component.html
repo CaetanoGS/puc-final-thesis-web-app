@@ -5,9 +5,10 @@
     <div class="signup">
       <form>
         <label for="chk" aria-hidden="true">Sign up</label>
-        <input type="text" name="txt" placeholder="Full name" required [(ngModel)]="signupName"/>
-        <input type="email" name="email" placeholder="Email" required [(ngModel)]="signupEmail"/>
-        <input type="password" name="pswd" placeholder="Password" required [(ngModel)]="signupPassword"/>
+        <input type="text" name="txt" placeholder="Full name" required [(ngModel)]="signupName" required/>
+        <input type="email" name="email" placeholder="Email" required [(ngModel)]="signupEmail" required/>
+        <input type="password" name="pswd" placeholder="Password" required [(ngModel)]="signupPassword" required minlength="4"/>
+        <span style="margin: 0 auto; display: table; color: red;" *ngIf="signUpErrorMessage">{{signUpErrorMessage | titlecase}}</span>
         <button (click)="signup()">Sign up</button>
       </form>
     </div>
@@ -29,6 +30,8 @@
           required
           [(ngModel)]="loginPassword"
         />
+
+        <span style="margin: 0 auto; display: table; color: red;" *ngIf="errorMessage">{{errorMessage | titlecase}}</span>
         <button (click)="login()">Login</button>
       </form>
     </div>
