@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         }
       },
       (error) => {
-        this.errorMessage = error.error;
+        this.errorMessage = "User or Password is Wrong";
       }
     )
   }
@@ -58,8 +58,7 @@ export class LoginComponent implements OnInit {
           window.location.reload();
       },
       (error) => {
-        this.signUpErrorMessage = "";
-        this.signUpErrorMessage = error.error.detail;
+        this.signUpErrorMessage = "User already exists, please select another email";
       }
     )
   }
