@@ -62,3 +62,69 @@
     ></apx-chart>
   </mat-grid-tile>
 </mat-grid-list>
+
+
+<mat-grid-list class="dashboard-grid" cols="3" rowHeight="2:1" *ngIf="transactions.length <= 0">
+  <mat-grid-tile class="dashboard-grid-market-block">
+    <mat-card class="market-card">
+      <mat-card-content>
+        <apx-chart
+          [series]="baseCostsChartOptions.series"
+          [chart]="baseCostsChartOptions.chart"
+          [stroke]="baseCostsChartOptions.stroke"
+          [yaxis]="baseCostsChartOptions.yaxis"
+          [fill]="baseCostsChartOptions.fill"
+          [colors]="baseCostsChartOptions.colors"
+          [title]="baseCostsChartOptions.title"
+          [subtitle]="baseCostsChartOptions.subtitle"
+        ></apx-chart>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile class="dashboard-grid-vacation-block">
+    <mat-card class="vacation-card">
+      <mat-card-content>
+        <apx-chart
+          [series]="hobbiesCostsChartOptions.series"
+          [chart]="hobbiesCostsChartOptions.chart"
+          [stroke]="hobbiesCostsChartOptions.stroke"
+          [yaxis]="hobbiesCostsChartOptions.yaxis"
+          [fill]="hobbiesCostsChartOptions.fill"
+          [colors]="hobbiesCostsChartOptions.colors"
+          [title]="hobbiesCostsChartOptions.title"
+          [subtitle]="hobbiesCostsChartOptions.subtitle"
+        ></apx-chart>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile class="dashboard-grid-stocks-block">
+    <mat-card class="stocks-card">
+      <mat-card-content>
+        <apx-chart
+          #chartspark1
+          [series]="investmentsChartOptions.series"
+          [chart]="investmentsChartOptions.chart"
+          [stroke]="investmentsChartOptions.stroke"
+          [yaxis]="investmentsChartOptions.yaxis"
+          [fill]="investmentsChartOptions.fill"
+          [colors]="investmentsChartOptions.colors"
+          [title]="investmentsChartOptions.title"
+          [subtitle]="investmentsChartOptions.subtitle"
+        ></apx-chart>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="3" rowspan="3">
+    <apx-chart
+      [series]="areaChartOptions.series"
+      [chart]="areaChartOptions.chart"
+      [title]="areaChartOptions.title"
+      [labels]="areaChartOptions.labels"
+      [colors]="areaChartOptions.colors"
+      style="width: 100%"
+    ></apx-chart>
+  </mat-grid-tile>
+</mat-grid-list>
